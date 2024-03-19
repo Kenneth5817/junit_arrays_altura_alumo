@@ -57,8 +57,6 @@ public class AlturaAlumnoTest {
         assertEquals(longInicial+1, arrayActual.length);
         assertEquals(nombre, arrayActual[longInicial+1]);
 
-
-
     }
 
 }
