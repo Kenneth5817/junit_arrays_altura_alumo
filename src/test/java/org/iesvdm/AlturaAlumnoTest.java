@@ -45,7 +45,6 @@ public class AlturaAlumnoTest {
 
 
         final String[] array = new String[0];
-
         int longInicial = array.length;
 
         String nombre = "María";
@@ -57,8 +56,78 @@ public class AlturaAlumnoTest {
         assertEquals(longInicial+1, arrayActual.length);
         assertEquals(nombre, arrayActual[longInicial+1]);
 
+    }
 
+    @Test
+    void modificaAlturaPosicionEnElArray() {
+
+        //When (Cuando)
+        double[] array = {1.6, 1.8, 1.7};
+        double[] array2 = Arrays.copyOf(array,array.length);
+        int posicion = 1;
+        double altura = 1.9;
+
+
+        //Do (Hacer)
+        AlturaAlumno.modificaAltura(array, posicion, altura);
+
+
+        //Then (Entonces)
+
+        //altura esta en la posicion
+        assertTrue( altura == array[posicion]);
+
+        //Todos los demas elementos del array no cambian
+        for (int i = 0; i < array.length; i++) {
+            if (i != posicion) {
+                assertEquals(array[i], array2[i]);
+            }
+        }
 
     }
+
+    @Test
+    void modificaAlturaPosicionFueraDeRangoArray() {
+
+        //When (Cuando)
+        double[] array = {1.6, 1.8, 1.7};
+        double[] array2 = Arrays.copyOf(array,array.length);
+        int posicion = array.length+2;
+        double altura = 1.9;
+
+
+        //Do (Hacer)
+        AlturaAlumno.modificaAltura(array, posicion, altura);
+
+
+        //Then (Entonces)
+
+        //altura esta en la posicion
+        //assertTrue( altura == array[posicion]);
+
+        //Todos los demas elementos del array no cambian
+//        for (int i = 0; i < array.length; i++) {
+//                assertEquals(array[i], array2[i]);
+//        }
+        assertArrayEquals(array2, array);
+
+    }
+
+    @Test
+    void modificarAlturaFueraDeRango(){
+        double[] array={1.7};
+        double [] arrayNuevo= Arrays.copyOf(array, array.length);
+        int pos=1;
+        double alturaNueva=1.85;
+
+        AlturaAlumno.modificaAltura(array,pos, alturaNueva);
+
+        for (int i=0;i<array.length;i++){
+            assertEquals(arrayNuevo[i],array[i]);
+        }
+
+    }
+
+
 
 }
