@@ -200,14 +200,17 @@ public class AlturaAlumno { // Recorrer dos arrays con la misma longitud
 
     /**
      * Pinta la tabla de alturas
+     *
      * @param arrayNombre,arrayAltura
+     * @return
      */
-    static void mostrar(String[] arrayNombre, double[] arrayAltura)
+    static String mostrar(String[] arrayNombre, double[] arrayAltura)
     {
         for (int i = 0; i < arrayNombre.length; i++)
         {
             System.out.println(arrayNombre[i] + "\t|   " + arrayAltura[i]);
         }
+        return null;
     }
 
 
