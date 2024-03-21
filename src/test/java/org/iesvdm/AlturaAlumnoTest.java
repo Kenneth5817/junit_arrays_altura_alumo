@@ -1,13 +1,15 @@
 package org.iesvdm;
-
-
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.iesvdm.AlturaAlumno.buscaNombre;
+import static org.iesvdm.AlturaAlumno.mostrar;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AlturaAlumnoTest {
+    private AlturaAlumno Altura;
+
     @Test
     void verdadero() {
         assertTrue(1==1);
@@ -81,7 +83,7 @@ public class AlturaAlumnoTest {
         }
 
         @Test
-        void añadeAltura(){
+        void aniadeAltura(){
             double [] array= {1.7d,1.8d,2.1d};
 
             double alturaDefecto=1.5;
@@ -106,82 +108,119 @@ public class AlturaAlumnoTest {
 
         @Test
 
-        void buscarNombre(){
-            //when
-            String nombreAlumno= "Jose";
-            int posicion= 1;
-
-            double [] arrayActual= nombreAlumno(posicion);
-            assertsEquals(nombreAlumno, arrayActual[arrayActual.length -1]);
-
-            //do
-            //then
-        }
-
-        @Test
-        void testModificaAltura() {
-            // Crear un array de prueba
-            double[] alturas = {1.7};
-            int pos=0;
-            double= alturanueva=1.85;
-            Altura.modificaAltura(array, pos, alternativa);
-
-            assertEquals(aray[pos], alturanueva);
-        }
-
-        @Test
-        void testBuscaNombre() {
-            // Crear un array de prueba
+        void buscarNombre() {
+            // Datos de prueba
             String[] nombres = {"Ana", "Juan", "María", "Pedro"};
+            String nombreAlumno = "Jose";
+            int posicionEsperada = -1; // Suponiendo que "Jose" no se encuentra en el arreglo
 
-            // Buscar un nombre existente en el array
-            int posicion = buscaNombre(nombres, "María");
+            // Llamamos al método para buscar el nombre
+            int posicionEncontrada = buscaNombre(nombres, nombreAlumno);
 
-            // Comprobar que la posición encontrada es la correcta
-            assertEquals(2, posicion);
-
-            // Buscar un nombre que no existe en el array
-            int posicionNoEncontrada = buscaNombre(nombres, "Luis");
-
-            // Comprobar que devuelve -1 cuando el nombre no existe
-            assertEquals(-1, posicionNoEncontrada);
+            // Comprobamos si la posición encontrada es la esperada
+            assertEquals(posicionEsperada, posicionEncontrada);
         }
+    private String nombreAlumno(String[] nombres, int posicion) {
+        // Verificamos si la posición es válida
+        if (posicion >= 0 && posicion < nombres.length) {
+            // Devolvemos el nombre del alumno en la posición dada
+            return nombres[posicion];
+        } else {
+            // Si la posición no es válida, devolvemos una cadena vacía o lanzar una excepción según sea necesario
+            return "";
+        }
+    }
 
-        @Test
+    private void assertsEquals(String nombreAlumno, double v) {
+    }
+
+    @Test
+    void testModificaAltura() {
+        // Crear un array de prueba
+        double[] alturas = {1.7};
+        int pos = 0;
+        double alturanueva = 1.85;
+
+        // Creamos un nuevo arreglo con el tamaño necesario
+        double[] array = new double[alturas.length];
+        // Copiar los valores del arreglo original al nuevo arreglo
+        System.arraycopy(alturas, 0, array, 0, alturas.length);
+
+        // Llamamos al método modificaAltura con el nuevo arreglo
+        AlturaAlumno.modificaAltura(array, pos, alturanueva);
+
+        // Verificamos si la altura en la posición indicada fue modificada correctamente
+        assertEquals(alturanueva, array[pos]);
+    }
+
+    // Método de prueba que llama al método buscaNombre
+    @Test
+    void testBuscaNombre() {
+        String[] nombres = {"jose", "cesar", "lucas"};
+        String nombre = "lucas";
+        int indiceEsperado = 2;
+
+        int resultado = buscaNombre(nombres, nombre); // Llamada al método buscaNombre
+
+        assertEquals(indiceEsperado, resultado);
+    }
+
+    @Test
         void testMostrar() {
-            // Crear un array de nombres y alturas de prueba
+            // Creamos un array de nombres y alturas de prueba
             String[] nombres = {"Ana", "Juan", "María", "Pedro"};
             double[] alturas = {1.65, 1.75, 1.70, 1.80};
 
-            // Llamar al método mostrar y obtener la salida
+            // Llamamos al método mostrar y obtenemos la salida
             String salidaObtenida = mostrar(nombres, alturas);
         }
     @Test
     void aniadeNombreTest2() {
-
-
         final String[] array = new String[0];
-
         int longInicial = array.length;
 
         String nombre = "María";
-        String[] arrayActual = AlturaAlumno
-                .añadeNombre(array, nombre);
+        String[] arrayActual = AlturaAlumno.añadeNombre(array, nombre);
 
-//        assertTrue(arrayActual[arrayActual.length-1]
-//                .equals(nombre) );
-        assertEquals(longInicial+1, arrayActual.length);
-        assertEquals(nombre, arrayActual[longInicial+1]);
+        assertEquals(longInicial + 1, arrayActual.length);
+        assertEquals(nombre, arrayActual[longInicial]); // Accede al último índice válido
+    }
+
+
+    @Test
+    public void testCalculaMaximo() {
+        double[] array = {3.5, 2.0, 7.8, 4.2, 5.1};
+
+        // Llamamos al método calculaMaximo de la clase AlturaAlumno
+        double[] resultado = AlturaAlumno.calculaMaximo(array);
+
+        // Ponemos como quedaría el resultado
+        double[] resultadoEsperado = {2.0, 7.8}; // La posición del máximo es 2 y el máximo es 7.8
+
+        // Comprobamos si son iguales los resultados
+        assertArrayEquals(resultadoEsperado, resultado, 0.01);
     }
 
     @Test
-    void buscaNombre(){
-        int indice=1;
-        String[]nombres={"jose","cesar","lucas"};
-        String nombre="lucas";
+    public void testCalculaMedia() {
 
-        int result = AlturaAlumno.buscaNombre(nombres,nombre);
-        assertTrue(indice==result);
+        double[] array = {3.5, 2.0, 7.8, 4.2, 5.1};
+
+        // Llamamos al método calculaMedia de la clase AlturaAlumno
+        double calculoMedia = AlturaAlumno.calculaMedia(array);
+
+        //Calculamos la media
+        double suma = 0.0;
+        for (double valor : array) {
+            suma += valor;
+        }
+        double mediaResultado = suma / array.length;
+
+        // Verificamos que los resultados son iguales
+        assertEquals(mediaResultado, calculoMedia, 0.0001);
     }
+
+
+
 
 }
