@@ -265,4 +265,8 @@ public class AlturaAlumno { // Recorrer dos arrays con la misma longitud
 
         return media;
     }
+
+    public static double[] aniadeAltura(double[] array) {
+        return array;
+    }
 }

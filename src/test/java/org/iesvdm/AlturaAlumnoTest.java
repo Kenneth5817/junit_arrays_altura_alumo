@@ -1,6 +1,8 @@
 package org.iesvdm;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 
 import static org.iesvdm.AlturaAlumno.buscaNombre;
@@ -30,7 +32,7 @@ public class AlturaAlumnoTest {
                 .añadeNombre(array, nombre);
 
         assertTrue(arrayActual[arrayActual.length-1]
-                    .equals(nombre) );
+                .equals(nombre) );
 
         for (int i = 0; i< array.length;i++)
             assertEquals(array[i], arrayActual[i]);
@@ -41,85 +43,85 @@ public class AlturaAlumnoTest {
 //        assertArrayEquals(arrayExpected, arrayActual);
 
     }
-        @Test
-        void aniadeNombreArrayVacio() {
+    @Test
+    void aniadeNombreArrayVacio() {
 
-            //When (Cuando)
-            //Array lleno
-            //nombre no nulo ni vacio
-            String[] array = new String[0];
-            String nombre = "Jose";
+        //When (Cuando)
+        //Array lleno
+        //nombre no nulo ni vacio
+        String[] array = new String[0];
+        String nombre = "Jose";
 
-            String[] arrayActual = AlturaAlumno.añadeNombre(array, nombre);
+        String[] arrayActual = AlturaAlumno.añadeNombre(array, nombre);
 
-            //Then (Entonces)
+        //Then (Entonces)
 
-            //arrayActual es posicion longitud +1 que array
-            //arrayActual tiene en la última posicion nombre
-            // arrayActual contiene a Array inicial
+        //arrayActual es posicion longitud +1 que array
+        //arrayActual tiene en la última posicion nombre
+        // arrayActual contiene a Array inicial
 
-            assertTrue(arrayActual.length == array.length + 1);
-            assertEquals(nombre, arrayActual[arrayActual.length - 1]);
-            //for(int =0; i<array.length; i++) assertEquals(array[i], arrayActual[i]);
+        assertTrue(arrayActual.length == array.length + 1);
+        assertEquals(nombre, arrayActual[arrayActual.length - 1]);
+        //for(int =0; i<array.length; i++) assertEquals(array[i], arrayActual[i]);
 
-            //Arrays.CopyOf()
-            assertArrayEquals(array,
-                    Arrays.copyOfRange(arrayActual, 0, array.length));
+        //Arrays.CopyOf()
+        assertArrayEquals(array,
+                Arrays.copyOfRange(arrayActual, 0, array.length));
 
-        }
+    }
 
-        @Test
-        void modificaAltura(){
-            //        when //
-            double [] array= {1.7d,1.8d,2.1d};
+    @Test
+    void modificaAltura(){
+        //        when //
+        double [] array= {1.7d,1.8d,2.1d};
 
-            int posicion=1;
-            double altura=2;
+        int posicion=1;
+        double altura=2;
 
-            AlturaAlumno.modificaAltura(array, posicion, altura);
-            assertEquals(altura, array[posicion]);
-            //do    //
-            //then    //
-        }
+        AlturaAlumno.modificaAltura(array, posicion, altura);
+        assertEquals(altura, array[posicion]);
+        //do    //
+        //then    //
+    }
 
-        @Test
-        void aniadeAltura(){
-            double [] array= {1.7d,1.8d,2.1d};
+    @Test
+    void aniadeAltura(){
+        double [] array= {1.7d,1.8d,2.1d};
 
-            double alturaDefecto=1.5;
+        double alturaDefecto=1.5;
 
-            double[] arrayActual = AlturaAlumno.añadeAltura(array);
+        double[] arrayActual = AlturaAlumno.añadeAltura(array);
 
-            //Then (Entonces)
+        //Then (Entonces)
 
-            //ArrayActuales posicion es longitud +1 que array
-            //arrayActualtiene en la ultima posicion nombre
-            //arrayActual contiene Array inicial
+        //ArrayActuales posicion es longitud +1 que array
+        //arrayActualtiene en la ultima posicion nombre
+        //arrayActual contiene Array inicial
 
-            assertTrue(arrayActual.length == array.length +1);
-            assertEquals(alturaDefecto, arrayActual[arrayActual.length-1]);
+        assertTrue(arrayActual.length == array.length +1);
+        assertEquals(alturaDefecto, arrayActual[arrayActual.length-1]);
 
-            //Arrays CopyOF
-            double [] actual= Arrays.copyOfRange(arrayActual,0, array.length);
-            assertArrayEquals(array,
-                    actual);
+        //Arrays CopyOF
+        double [] actual= Arrays.copyOfRange(arrayActual,0, array.length);
+        assertArrayEquals(array,
+                actual);
 
-        }
+    }
 
-        @Test
+    @Test
 
-        void buscarNombre() {
-            // Datos de prueba
-            String[] nombres = {"Ana", "Juan", "María", "Pedro"};
-            String nombreAlumno = "Jose";
-            int posicionEsperada = -1; // Suponiendo que "Jose" no se encuentra en el arreglo
+    void buscarNombre() {
+        // Datos de prueba
+        String[] nombres = {"Ana", "Juan", "María", "Pedro"};
+        String nombreAlumno = "Jose";
+        int posicionEsperada = -1; // Suponiendo que "Jose" no se encuentra en el arreglo
 
-            // Llamamos al método para buscar el nombre
-            int posicionEncontrada = buscaNombre(nombres, nombreAlumno);
+        // Llamamos al método para buscar el nombre
+        int posicionEncontrada = buscaNombre(nombres, nombreAlumno);
 
-            // Comprobamos si la posición encontrada es la esperada
-            assertEquals(posicionEsperada, posicionEncontrada);
-        }
+        // Comprobamos si la posición encontrada es la esperada
+        assertEquals(posicionEsperada, posicionEncontrada);
+    }
     private String nombreAlumno(String[] nombres, int posicion) {
         // Verificamos si la posición es válida
         if (posicion >= 0 && posicion < nombres.length) {
@@ -166,15 +168,6 @@ public class AlturaAlumnoTest {
     }
 
     @Test
-        void testMostrar() {
-            // Creamos un array de nombres y alturas de prueba
-            String[] nombres = {"Ana", "Juan", "María", "Pedro"};
-            double[] alturas = {1.65, 1.75, 1.70, 1.80};
-
-            // Llamamos al método mostrar y obtenemos la salida
-            String salidaObtenida = mostrar(nombres, alturas);
-        }
-    @Test
     void aniadeNombreTest2() {
         final String[] array = new String[0];
         int longInicial = array.length;
@@ -186,6 +179,39 @@ public class AlturaAlumnoTest {
         assertEquals(nombre, arrayActual[longInicial]); // Accede al último índice válido
     }
 
+    @Test
+    void testMostrar() {
+        // Creamos un array de nombres y alturas de prueba
+        String[] nombres = {"Lucas", "Juan", "María", "Pedro"};
+        double[] alturas = {1.65, 1.76, 1.70, 1.80};
+
+        // Llamamos al método mostrar y obtenemos la salida
+        String salida = mostrar(nombres, alturas);
+    }
+
+    @Test
+    void givenNombresAndAlturasWhenMostrarThenPrint(){
+
+        final PrintStream standardOut = System.out;
+        final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        String [] nombres= {"hola", "hello"};
+        double [] alturas= {5.2,7.3};
+        AlturaAlumno.mostrar(nombres, alturas);
+
+
+        assertEquals ("hola\t|   5.2\n"+ "hello\t|   7.3\n", outputStreamCaptor.toString());
+
+        int indexOfHello=outputStreamCaptor.toString().indexOf("hello");
+        assertTrue (
+                indexOfHello>-1);
+
+
+        assertTrue(outputStreamCaptor.toString().contains(("hello")));
+
+    }
 
     @Test
     public void testCalculaMaximo() {
@@ -195,12 +221,21 @@ public class AlturaAlumnoTest {
         double[] resultado = AlturaAlumno.calculaMaximo(array);
 
         // Ponemos como quedaría el resultado
-        double[] resultadoEsperado = {2.0, 7.8}; // La posición del máximo es 2 y el máximo es 7.8
+        double[] resultadoEsperado = {2.0, 7.8};
 
         // Comprobamos si son iguales los resultados
         assertArrayEquals(resultadoEsperado, resultado, 0.01);
     }
 
+    @Test
+    void calculaMaximoLongitudCero(){
+        double[]array= new double [0];
+        double[] result= AlturaAlumno.calculaMaximo(array);
+
+        assertTrue(result[0]==0.0);
+        assertTrue(result[1]==0.0);
+
+    }
     @Test
     public void testCalculaMedia() {
 
@@ -220,6 +255,12 @@ public class AlturaAlumnoTest {
         assertEquals(mediaResultado, calculoMedia, 0.0001);
     }
 
+    @Test
+    void calcularMediaArrayLengthCero(){
+        double [] array = new double[0];
+        double result = AlturaAlumno.calculaMedia(array);
+        assertEquals(0.0, result);
+    }
 
 
 
